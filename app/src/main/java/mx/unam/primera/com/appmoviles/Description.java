@@ -266,12 +266,16 @@ public class Description extends Fragment
                     {
                         try
                         {
+                            int uiMainColor = Color.parseColor("#" + event.getType().getColorHex());
+                            fbtnAddToCalendar.setBackgroundColor(uiMainColor);
+
                             txvTitle.setText(event.getName().toString());
+                            txvDetails.setTextColor(uiMainColor);
                             txvDetails.setText(event.getDescription().toString());
                             txvSch.setText(String.valueOf(android.text.format.DateFormat.format("dd MMMM yyyy hh:mm a",
                                     event.getDate())));
                             imgType.setImageResource(event.getType().getImageResource());
-                            flBasicInfo.setBackgroundColor(Color.parseColor("#" + event.getType().getColorHex()));
+                            flBasicInfo.setBackgroundColor(uiMainColor);
 
                             getActivity().setTitle("Detalles de evento");
 

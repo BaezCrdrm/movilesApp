@@ -17,8 +17,7 @@
         android:tag=""
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="true"
-        android:background="@drawable/recyclerview_item_shadow">
+        android:fadeScrollbars="true">
 
         <ImageView
             android:id="@+id/Recycler_images"
@@ -58,7 +57,6 @@
                 android:maxLines="1"
                 android:ellipsize="marquee"
                 android:gravity="bottom" />
-
         </LinearLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>
