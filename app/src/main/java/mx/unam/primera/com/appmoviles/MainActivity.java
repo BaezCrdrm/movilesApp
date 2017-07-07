@@ -1,9 +1,13 @@
 package mx.unam.primera.com.appmoviles;
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +31,7 @@ import org.json.JSONArray;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -90,7 +95,50 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigate(R.id.nav_all);
+        if(testConnection(getApplicationContext()))
+            navigate(R.id.nav_all);
+        else
+        {
+            Intent i = new Intent(this, NoConnectionActivity.class);
+            startActivity(i);
+        }
+    }
+
+    private boolean testConnection(Context context)
+    {
+        // Se debe agregar a una tarea asíncrona para que funcione
+         /*if (isNetworkAvailable(context)) {
+            try
+            {
+                HttpURLConnection urlc = (HttpURLConnection)
+                        (new URL("http://clients3.google.com/generate_204")
+                                .openConnection());
+                urlc.setRequestProperty("User-Agent", "Android");
+                urlc.setRequestProperty("Connection", "close");
+                urlc.setConnectTimeout(1500);
+                urlc.connect();
+                return (urlc.getResponseCode() == 204 &&
+                        urlc.getContentLength() == 0);
+            }
+            catch (IOException e) {
+                Log.e("Internet connection", "Error checking internet connection", e);
+            }
+        } else {
+            Log.d("Internet connection", "No network available!");
+        }
+        return false;*/
+
+         return isNetworkAvailable(context);
+    }
+
+    private static boolean isNetworkAvailable(Context context)
+    {
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        return isConnected;
     }
 
     private boolean isTablet()
@@ -107,12 +155,6 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-            /*if(getFragmentManager().getBackStackEntryCount() > 2) {
-                getFragmentManager().popBackStack();
-                } else {
-                    super.onBackPressed();
-            }*/
-
             RelativeLayout rl = (RelativeLayout) findViewById(R.id.rLayoutEventDetails);
             if (rl.getVisibility() == View.VISIBLE)
                 rl.setVisibility(View.GONE);
