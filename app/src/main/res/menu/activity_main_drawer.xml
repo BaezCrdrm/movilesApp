@@ -7,20 +7,20 @@
         android:title="Todos" />
 
     <item android:title="Deportes...">
-            <menu>
-        <item
-            android:id="@+id/nav_americano"
-            android:title="Futbol Americano" />
-        <item
-            android:id="@+id/nav_soccer"
-            android:title="Futbol Soccer" />
-        <item
-            android:id="@+id/nav_bascket"
-            android:title="Basketball" />
-        <item
-            android:id="@+id/nav_baseball"
-            android:title="Baseball" />
-           </menu>
+        <menu>
+            <item
+                android:id="@+id/nav_americano"
+                android:title="Futbol Americano" />
+            <item
+                android:id="@+id/nav_soccer"
+                android:title="Futbol Soccer" />
+            <item
+                android:id="@+id/nav_bascket"
+                android:title="Basketball" />
+            <item
+                android:id="@+id/nav_baseball"
+                android:title="Baseball" />
+        </menu>
     </item>
 
     <item android:title="Especiales...">
