@@ -59,7 +59,7 @@ public class Description extends Fragment
     private OnFragmentInteractionListener mListener;
 
     Service service;
-    TextView txvTitle, txvSch, txvDetails;
+    TextView txvTitle, txvSch, txvDetails, txvDuration;
     Event event;
     ImageView imgType;
     ProgressBar pb;
@@ -111,6 +111,9 @@ public class Description extends Fragment
         txvTitle.setText("");
         txvSch = (TextView)view.findViewById(R.id.txvSchedule);
         txvSch.setText("");
+        txvDuration = (TextView)view.findViewById(R.id.txvDuration);
+        txvDuration.setText("");
+        txvDuration.setVisibility(View.GONE);
         txvDetails = (TextView)view.findViewById(R.id.txvDetails);
         txvDetails.setText("");
         imgType = (ImageView)view.findViewById(R.id.imgType);
@@ -247,6 +250,7 @@ public class Description extends Fragment
                             event.getType().setColorHex("D1C103");
                             break;
                         default:
+                            event.getType().setColorHex("D3D3D3");
                             break;
                     }
 
@@ -274,6 +278,30 @@ public class Description extends Fragment
                             txvDetails.setText(event.getDescription().toString());
                             txvSch.setText(String.valueOf(android.text.format.DateFormat.format("dd MMMM yyyy hh:mm a",
                                     event.getDate())));
+
+                            if(event.getDuration().getHours() > 0 || event.getDuration().getMinutes() > 0)
+                            {
+                                String duration = "Duracion:";
+
+                                if(event.getDuration().getHours() > 0)
+                                {
+                                    duration += " " +
+                                            String.valueOf(event.getDuration().getHours()) +
+                                            " hora";
+
+                                    if(event.getDuration().getHours() > 1)
+                                        duration += "s";
+                                }
+                                if (event.getDuration().getMinutes() > 0)
+                                {
+                                    duration += " " +
+                                            String.valueOf(event.getDuration().getMinutes()) +
+                                            " minutos";
+                                }
+
+                                txvDuration.setText(duration);
+                                txvDuration.setVisibility(View.VISIBLE);
+                            }
                             imgType.setImageResource(event.getType().getImageResource());
                             flBasicInfo.setBackgroundColor(uiMainColor);
 

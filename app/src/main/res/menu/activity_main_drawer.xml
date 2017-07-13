@@ -18,7 +18,7 @@
             android:id="@+id/nav_bascket"
             android:title="Basketball" />
         <item
-            android:id="@+id/nav_basebaññ"
+            android:id="@+id/nav_baseball"
             android:title="Baseball" />
            </menu>
     </item>
@@ -27,11 +27,14 @@
         <menu>
             <item
                 android:id="@+id/nav_conciertos"
-                android:title="Conciertos" />
+                android:title="Musicales" />
             <item
                 android:id="@+id/nav_event"
-                android:title="Eventos especiales" />
+                android:title="Premios" />
+
+            <item
+                android:id="@+id/nav_more"
+                android:title="Otros" />
         </menu>
     </item>
-
 </menu>

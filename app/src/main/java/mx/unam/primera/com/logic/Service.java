@@ -60,6 +60,10 @@ public class Service
                 SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US);
                 event.setDate(format.parse(strDate));
 
+                strDate = ob.getString("ev_sch_end");
+                strDate = strDate.replace("-", "/");
+                event.setEnding(format.parse(strDate));
+
                 try
                 {
                     event.getType().setId(Integer.parseInt(ob.getString("tp_id")));

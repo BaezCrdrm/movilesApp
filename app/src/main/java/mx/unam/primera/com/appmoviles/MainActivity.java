@@ -182,13 +182,16 @@ public class MainActivity extends AppCompatActivity
                                 _id=R.id.nav_bascket;
                                 break;
                             case 4:
-                                _id=R.id.nav_basebaññ;
+                                _id=R.id.nav_baseball;
                                 break;
                             case 5:
                                 _id=R.id.nav_conciertos;
                                 break;
                             case 6:
                                 _id=R.id.nav_event;
+                                break;
+                            default:
+                                _id=R.id.nav_more;
                                 break;
                         }
                         navigate(_id);
@@ -252,7 +255,7 @@ public class MainActivity extends AppCompatActivity
                 newNav = 3;
                 break;
 
-            case R.id.nav_basebaññ:
+            case R.id.nav_baseball:
                 args.putSerializable("EventType", 4);
                 newNav = 4;
                 break;
@@ -265,6 +268,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_event:
                 args.putSerializable("EventType", 6);
                 newNav = 6;
+                break;
+
+            case R.id.nav_more:
+                args.putSerializable("EventType", 7);
+                newNav = 7;
                 break;
         }
         fragment.setArguments(args);
@@ -313,7 +321,4 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
-
-
-
 }
